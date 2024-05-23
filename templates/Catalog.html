@@ -1,0 +1,14 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioCatalog {% endblock %}
+{% block content %}
+    <section class="catalog">
+    <h2>Catalog</h2>
+        <!-- <ul> -->
+            <!-- {% for livre in livres %}
+                <li>{{ livre.livreName }} - {{ livre.livreDescription }} - {{ livre.livreAuthor }} - {{ livre.nbEx }}</li>
+            {% endfor %} -->
+
+            {% include 'ListBooks.html' %}
+            <!-- </ul> -->
+    </section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'index1.html' %}
+{% block title %} Biblio {% endblock %}
+
+{% block content %}
+    <header>
+       <h1>BIBLIO</h1>
+    </header>
+{##}
+{#    <section class="burger">#}
+{#        <ul>#}
+{#            <li><a href="{{ url_for('catalog') }}">Catalog</a></li>#}
+{#            <li><a href="">Genres</a></li>#}
+{#            <li><a href="">Auteurs</a></li>#}
+{#            <li><a href="">My reservation</a></li>#}
+{#        </ul>#}
+{#    </section>#}
+    
+    <section class="about-us">
+        <h2>À propos de nous</h2>
+        <div class="parag">
+            <img src="/static/img/books.jpg" alt="">
+            <p>Nous sommes heureux de vous accueillir dans notre bibliothèque, où chacun peut trouver quelque chose à son goût. Des classiques aux nouveautés, des travaux scientifiques à la littérature artistique, notre collection est constamment mise à jour et enrichie. Nous croyons que les livres ont le pouvoir de changer des vies et nous nous efforçons de faire en sorte que chacun puisse trouver ici inspiration et connaissances.</p>
+        </div>
+    </section>
+
+{% endblock %}

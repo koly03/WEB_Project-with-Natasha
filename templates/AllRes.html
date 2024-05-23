@@ -1,0 +1,24 @@
+{% extends 'index1.html' %}
+{% block title %} Toutes les réservations {% endblock %}
+
+{% block content %}
+    <section class="genre-page">
+        <h1 class="genres" style="padding-top: 75px; padding-bottom: 30px">All Reservation</h1>
+        <section class="list">
+            {% for u in users %}
+                <h3>{{ u[0] }} {{ u[1] }}:</h3>
+                {% if dates[users.index(u)][0] %}
+                    {% for d in dates[users.index(u)] %}
+                        <li style="padding-left: 2rem"><span><b>Du {{ d[0][8:] }}/{{ d[0][5:7] }}/{{ d[0][:4] }} au
+                        {{ d[1][8:] }}/{{ d[1][5:7] }}/{{ d[1][:4] }}:</b>
+                            <a href="{{ url_for('book', book_id=d[2]) }}">{{ d[3] }}</a></span></li>
+{#                              <input type="button" class="but" value="justificate start" onclick=""/>#}
+{#                              <input type="button" class="but" value="justificate finish" onclick=""/></span></li>#}
+                    {% endfor %}
+                {% else %}
+                    <span style="padding-left: 1rem">Rien</span>
+                {% endif %}
+            {% endfor %}
+        </section>
+    </section>
+{% endblock %}

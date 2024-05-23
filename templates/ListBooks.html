@@ -1,0 +1,26 @@
+{% for book in books %}
+                <div class="catalog-container">
+                    <img src="{{book[1]}}" alt="" class="book-img">
+                    <div class="book-right-side">
+
+                        <h4 class="book-name"><a href="{{ url_for('book', book_id=book[0]) }}">{{book[2]}}</a></h4>
+                        <div class="book-auteur">
+                            <span class="labl"> Auteur(s) </span>
+                            {% for a in authors[books.index(book)] %}
+                                <span><a href="{{ url_for('author', a_id=a[0]) }}">{{ a[1] }}</a></span>
+                            {% endfor %}
+                        </div>
+                        <div class="book-about">
+                            <span class="labl">About book</span>
+                            <p class="book-discription">{{book[3]}}</p>
+                        </div>
+                        <div class="book-auteur">
+                            <span class="labl"> Genres </span>
+                            <span>
+                            {% for g in genres[books.index(book)] %}<a href="{{ url_for('genre', g_id=g[0]) }}">{{ g[1] }}</a>, {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                    <span class="lines"></span>
+                </div>
+            {% endfor %}

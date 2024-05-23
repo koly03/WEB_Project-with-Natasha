@@ -1,0 +1,9 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioGenre {% endblock %}
+{% block content %}
+
+    <section class="catalog">
+    <h2>Catalog de genre "{{ genre }}"</h2>
+        {% include 'ListBooks.html' %}
+    </section>
+{% endblock %}

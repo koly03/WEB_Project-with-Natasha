@@ -1,0 +1,87 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioSearch {% endblock %}
+
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="main_search">
+    <form method="post">
+        <h1 class="nam">Recherche</h1>
+        <ul class="list2">
+            <input class="input" type="text" name="Search" value=""/>
+            <input class="but" type="submit" value="Search"/>
+        </ul>
+
+        <style>
+            .list2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .but {
+                border-radius: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 15px;
+                min-width: 80px;
+            }
+        </style>
+    </form>
+    </section>
+    {% for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+    {% endfor %}
+    {% if search2 == True %}
+        <section class="genre-content">
+            <h2 class="genres" style="margin-top: 70px">Auteurs</h2>
+            <div class="list1">
+            {% for g in authors_a %}
+                <span><li class="li1"><a href="{{ url_for('author', a_id=g[0]) }}">{{ g[1] }}</a></li></span>
+            {% endfor %}
+            </div>
+        </section>
+{#        {% for book in books_a %}#}
+{#                <div class="catalog-container">#}
+{#                    <img src="{{book[1]}}" alt="" class="book-img">#}
+{#                    <div class="book-right-side">#}
+{##}
+{#                        <h4 class="book-name"><a href="{{ url_for('book', book_id=book[0]) }}">{{book[2]}}</a></h4>#}
+{#                        <div class="book-auteur">#}
+{#                            <span class="labl"> Auteur(s) </span>#}
+{#                            {% for a in authors_a[books_a.index(book)] %}#}
+{#                                <span><a href="{{ url_for('author', a_id=a[0]) }}">{{ a[1] }}</a></span>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                        <div class="book-about">#}
+{#                            <span class="labl">About book</span>#}
+{#                            <p class="book-discription">{{book[3]}}</p>#}
+{#                        </div>#}
+{#                        <div class="book-auteur">#}
+{#                            <span class="labl"> Genres </span>#}
+{#                            <span>#}
+{#                            {% for g in genres_a[books_a.index(book)] %}<a href="{{ url_for('genre', g_id=g[0]) }}">{{ g[1] }}</a>, {% endfor %}#}
+{#                            </span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <span class="lines"></span>#}
+{#                </div>#}
+{#            {% endfor %}#}
+    {% endif %}
+    {% if search3 == True %}
+        <section class="genre-content">
+            <h2 class="genre" style="margin-top: 0px">Genres</h2>
+            <div class="list1">
+            {% for g in genres_g %}
+                <span><li class="li1"><a href="{{ url_for('genre', g_id=g[0]) }}">{{ g[1] }}</a></li></span>
+            {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+    {% if search1 == True %}
+    <section class="catalog">
+        <h2 class="genres">Livres</h2>
+        {% include 'ListBooks.html' %}
+    </section>
+    {% endif %}
+{% endblock %}

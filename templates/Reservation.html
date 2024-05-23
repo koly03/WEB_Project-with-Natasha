@@ -1,0 +1,26 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioReservation {% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="registration">
+        <h3>Reservation: <a href="">{{ exem }}</a> de <a href="">{{ book }}</a></h3>
+        {% for cat, msg in get_flashed_messages(True) %}
+            <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+        {% endfor %}
+        <form action="{{ url_for('res', ex_id=exem) }}" method="post">
+            <div class="label-part">
+                <label for="DateD">De</label>
+                <input class="input" type="date" name="DateD" value="" required />
+
+            </div>
+            <div class="label-part">
+                <label for="DateA">A</label>
+                <input class="input" type="date" name="DateA" value="" required />
+
+            </div>
+                <input  class="input but" type="submit" value="Reserve"/>
+
+        </form>
+    </section>
+
+{% endblock %}

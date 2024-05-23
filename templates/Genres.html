@@ -1,0 +1,17 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioGenres {% endblock %}
+
+{% block content %}
+    <section class="genre-page">
+    <section class="genre-content">
+    <h2 class="genre">Genres</h2>
+    <div class="list1">
+    {% for g in genres %}
+        <span><li class="li1"><a href="{{ url_for('genre', g_id=g[0]) }}">{{ g[1] }}</a></li></span>
+    {% endfor %}
+    </div>
+    </section>
+    </section>
+{#    <section class="catalog">#}
+{#    </section>#}
+{% endblock %}

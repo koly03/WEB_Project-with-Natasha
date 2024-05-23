@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script1.js"></script>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">  
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul>
+            <div class="left-side">
+                <li class="burger-menu"><img class="hui" src="/static/img/menu.png" alt=""></li>
+                <li class="logo"><a href="{{ url_for('home') }}">BIBLIO</a></li>
+            </div>
+            {% block search %}
+            <form method="post">
+                <li class="search-form">
+                    <input type="text" placeholder="Search.." class="search-box-input" name="bur_search">
+                    <button class="search-box-button" type="submit">&#128269</button>
+{#                    <input class="search-box-button" type="submit" value="&#128269"/>#}
+                </li>
+            </form>
+            {% endblock %}
+            {% if not pid %}
+                <li class="reg"><a href="{{ url_for('reg') }}">S'incrire</a></li>
+                <li class="sign-in"><a href="{{ url_for('login') }}">Se connecter</a></li>
+            {% else %}
+                <li class="reg"><a href="{{ url_for('myRes') }}">myRes</a></li>
+                <li class="sign-in"><a href="{{ url_for('login') }}">GoOut</a></li>
+            {% endif %}
+        </ul>
+
+    </nav>
+    <section class="burger">
+        <ul>
+            <li><a href="{{ url_for('catalog') }}">Catalog</a></li>
+            <li><a href="{{ url_for('genres') }}">Genres</a></li>
+            <li><a href="{{ url_for('authors') }}">Auteurs</a></li>
+{#            <li><a href="{{ url_for('myRes') }}">My reservation</a></li>#}
+            <form class="adp4"  method="post">
+                <li class="search-form">
+                <input type="text" placeholder="Search.." class="search-box-input" name="bur_search">
+                <button class="search-box-button" type="submit">&#128269</button>
+{#              <input class="search-box-button" type="submit" value="&#128269"/>#}
+                </li>
+            </form> 
+            {% if role == 1 %}
+                <li><a href="{{ url_for('allRes') }}">Toutes les réservations</a></li>
+                <li><a href="{{ url_for('addBook') }}">Ajouter un livre</a></li>
+                <li><a href="{{ url_for('addExemplaires') }}">Ajouter un exemplaire</a></li>
+            {% endif %}
+        </ul>
+    </section>
+    
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <ul>
+            <li><i class="fa fa-instagram"></i></li>
+            <li><i class="fa fa-facebook"></i></li>
+            <li><i class="fa fa-github"></i></li>
+        </ul>
+        <div class="names">
+            <span>Nikolai IAKIMENKO</span>
+            <span>Natalia TYMOFIEIEVA</span>
+        </div>
+    </footer>
+
+</body>
+</html>

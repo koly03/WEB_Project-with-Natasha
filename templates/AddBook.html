@@ -1,0 +1,75 @@
+{% extends 'index1.html' %}
+{% block title %} AddBook {% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="registration">
+        <h3>Ajouter un livre</h3>
+        {% for cat, msg in get_flashed_messages(True) %}
+            <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+        {% endfor %}
+        <form action="{{url_for('addBook')}}" method="post">
+            <div class="label-part">
+                <label for="titre">Titre *</label>
+                <input class="input" type="text" name="titre" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="imgl">Image link</label>
+                <input class="input" type="url" name="imgl" value=""/>
+            </div>
+            <div class="label-part">
+                <label for="author">Author(s) *</label>
+{#                <select id="author" name="author" class="input">#}
+{#                    {% for a in authors %}#}
+{#                        <option value="{{ a[0] }}" onclick="">{{ a[1] }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+                <details>
+                    <summary class="input">Authors</summary>
+                    <fieldset>
+                        <ul>
+                            {% for a in authors %}
+                                <li style="list-style-type: none">
+                                    <input type="checkbox" name="check_box_a[]" value="{{ a[0] }}" />
+                                    <label for="check_box_a[]">{{ a[1] }}</label>
+                                </li>
+                            {% endfor %}
+                            <li style="list-style-type: none" id="addG">
+                                <input type="button" id="newA" value="+ Add new" onclick="addOther('newA')"/><br>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </details>
+            </div>
+            <div class="label-part">
+                <label for="genre[]">Genre(s) *</label>
+{#                <select multiple name="genre[]" class="input">#}
+{#                    {% for g in genres %}#}
+{#                        <option><input type="checkbox" name="{{ g[0] }}">{{ g[1] }}</input></option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+                <details>
+                    <summary class="input">Genres</summary>
+                    <fieldset>
+                        <ul>
+                            {% for g in genres %}
+                                <li style="list-style-type: none">
+                                    <input type="checkbox" name="check_box_g[]" value="{{ g[0] }}" />
+                                    <label for="check_box_g[]">{{ g[1] }}</label>
+                                </li>
+                            {% endfor %}
+                            <li style="list-style-type: none" id="addG">
+                                <input type="button" id="newG" value="+ Add new" onclick="addOther('newG')"/><br>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </details>
+            </div>
+            <div class="label-part">
+                <label for="Description">Description</label>
+                <textarea class="input" rows="5" cols="50" placeholder="Description..." name="Description"></textarea>
+            </div>
+                <input  class="input but" type="submit" value="Add">
+        </form>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioRegistration {% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="registration">
+        <h3>S'inscrire</h3>
+        {% for cat, msg in get_flashed_messages(True) %}
+            <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+        {% endfor %}
+        <form action="{{url_for('reg')}}" method="post">
+            <div class="label-part">
+                <label for="PassportID">Numéro de passport *</label>
+                <input class="input" type="text" name="PassportID" placeholder="Code à 9 chiffres" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="Surname">Nom *</label>
+                <input class="input" type="text" name="Surname" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="Name">Prenom *</label>
+                <input class="input" type="text" name="Name" value="" required/>
+
+            </div>
+            <div class="label-part">
+                <label for="Email">Email *</label>
+                <input class="input" type="email" name="Email" value="" required/>
+
+            </div>
+            <div class="label-part">
+                <label for="Telephone">Téléphone *</label>
+                <input class="input" type="tel" name="Telephone" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="Password">Mot de pass *</label>
+                <input class="input" type="password" name="Password" placeholder="Minimum 4 caractères" value="" required/>
+            </div>
+            <div class="label-part">
+                <label><br></label>
+                <label for="PasswordAdmin">Responsable</label>
+                <label for="PasswordAdmin">(si vous êtes responsable, saisissez le code d'accès)</label>
+                <input class="input" type="password" name="PasswordAdmin" value=""/>
+            </div>
+            <div class="label-part">
+                <label><br></label>
+                <label>* - champ obligatoire</label>
+            </div>
+                <input  class="input but" type="submit" value="Registre">
+        </form>
+    </section>
+
+{% endblock %}

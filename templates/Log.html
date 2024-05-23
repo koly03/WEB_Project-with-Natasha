@@ -1,0 +1,26 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioLogin {% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="registration">
+        <h3>Se connecter</h3>
+        {% for cat, msg in get_flashed_messages(True) %}
+            <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+        {% endfor %}
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="label-part">
+                <label for="PassportID">Numéro de passport</label>
+                <input class="input" type="text" name="PassportID" value="" required />
+
+            </div>
+            <div class="label-part">
+                <label for="Password">Mot de pass</label>
+                <input class="input" type="password" name="Password" value="" required />
+
+            </div>
+                <input  class="input but" type="submit" value="Se connecter"/>
+
+        </form>
+    </section>
+
+{% endblock %}

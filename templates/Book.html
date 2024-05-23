@@ -1,0 +1,65 @@
+{% extends 'index1.html' %}
+{% block title %} BiblioCatalog {% endblock %}
+{% block content %}
+    <section class="catalog">
+    <h2 style="align-self: center">{{book[2]}}</h2>
+    <div class="catalog-container" style="background: var(--accent); border-color: var(--accent); border-radius: 25px;">
+                    <img src="{{book[1]}}" alt="" class="book-img">
+                    <div class="book-right-side">
+                        <div class="book-auteur">
+                            <span class="labl"> Auteur(s) </span>
+                            {% for a in authors %}
+                                <span><a href="{{ url_for('author', a_id=a[0]) }}">{{ a[1] }}</a></span>
+                            {% endfor %}
+                        </div>
+                        <div class="book-about">
+                            <span class="labl">About book</span>
+                            <p class="book-discription">{{book[3]}}</p>
+                        </div>
+                        <div class="book-auteur">
+                            <span class="labl"> Genres </span>
+                            <span>
+                            {% for g in genres %}<a href="{{ url_for('genre', g_id=g[0]) }}">{{ g[1] }}</a>, {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                    <span class="lines"></span>
+                </div>
+
+    <h2 style="align-self: center; margin-top: 50px;">Exemplaires</h2>
+    {% for a in exem %}
+                <div class="catalog-container">
+                    <img src="{{a[1]}}" alt="" class="book-img">
+                    <div class="book-right-side">
+                        <div class="book-auteur">
+                            <span class="labl"> Maison d'édition: </span>
+                            <span>{{ a[7] }}</span>
+                        </div>
+                        <div>
+                            <span><b>Année:</b>{{ a[2] }}</span>
+                        </div>
+                        <div>
+                            <span><b>Langage:</b> {{ a[4] }}</span>
+                        </div>
+                        <div>
+                            <span><b>Nomber de pages:</b> {{ a[3] }}</span>
+                        </div>
+                        <div>
+                            <span><b>Etat:</b> {{ a[10] }}</span>
+                        </div>
+                        <div>
+                            <span><b>Prix:</b> {{ a[5] }}€</span>
+                        </div>
+                        <div>
+                            {% if pid %}
+                                <span class="labl"><a href="{{ url_for('res', ex_id=a[0], book=[2]) }}">Reserve</a></span>
+                            {% else %}
+                                <span class="labl"><a href="{{ url_for('login')}}">Reserve</a></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <span class="lines"></span>
+                </div>
+            {% endfor %}
+    </section>
+{% endblock %}

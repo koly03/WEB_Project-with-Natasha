@@ -1,0 +1,59 @@
+{% extends 'index1.html' %}
+{% block title %} AddExemplaires {% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <section class="registration">
+        <h3>Ajouter un exemplaire du livre</h3>
+        {% for cat, msg in get_flashed_messages(True) %}
+            <div class="flash {{ cat }}"><label class="label-part">{{ msg }}</label></div>
+        {% endfor %}
+        <form action="{{url_for('addExemplaires')}}" method="post">
+            <div class="label-part">
+                <label for="livre">Livre</label>
+                <select name="livre" class="input">
+                    {% for b in books %}
+                        <option value="{{ b[0] }}">{{ b[2] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="label-part">
+                <label for="imgl">Image link</label>
+                <input class="input" type="url" name="imgl" value=""/>
+            </div>
+            <div class="label-part">
+                <label for="an">An de emition</label>
+                <input class="input" type="number" name="an" value="2000" required/>
+            </div>
+            <div class="label-part">
+                <label for="emition">Maison de emition</label>
+                <input class="input" type="text" name="emition" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="langage">Langage</label>
+                <input class="input" type="text" name="langage" value="" required/>
+            </div>
+            <div class="label-part">
+                <label for="page">Nomber de pages</label>
+                <input class="input" type="number" name="page" value="0" required/>
+            </div>
+            <div class="label-part">
+                <label for="prix">Prix</label>
+                <input class="input" type="number" step="any" name="prix" value="0.0" required/>
+            </div>
+            <div class="label-part">
+                <label for="etat">Etat</label>
+                <select name="etat" class="input">
+                    {% for e in etat %}
+                        <option value="{{ e[0] }}">{{ e[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="label-part">
+                <label for="emplace">Emplace</label>
+                <input class="input" type="number" name="emplace" value="" required/>
+            </div>
+                <input  class="input but" type="submit" value="Add">
+        </form>
+    </section>
+
+{% endblock %}
